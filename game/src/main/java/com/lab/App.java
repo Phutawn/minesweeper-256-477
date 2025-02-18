@@ -1,5 +1,5 @@
 package com.lab;
-
+ 
 /**
  * Hello world!
  */
@@ -24,7 +24,7 @@ public class App {
     public static void main(String[] args) {
         // Task 3: Implement a menu to select the mine field template
         // Design the menu by yourself.
-                
+               
         Minesweeper game = initMineField();
         // Minesweeper game = initMineFieldFromFile("minefield/minefield01.txt");
         game.displayField();
