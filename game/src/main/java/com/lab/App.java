@@ -1,32 +1,38 @@
 package com.lab;
- 
-/**
- * Hello world!
- */
+
+import java.util.Scanner;
+
 public class App {
-    static Minesweeper initMineField() {
-        Minesweeper game = new Minesweeper(9, 9);
-        game.setMineCell(0, 1);
-        game.setMineCell(1, 5);
-        game.setMineCell(1, 8);
-        game.setMineCell(2, 4);
-        game.setMineCell(3, 6);        
-        game.setMineCell(4, 2);
-        game.setMineCell(5, 4);
-        game.setMineCell(6, 2);
-        game.setMineCell(7, 2);
-        game.setMineCell(8, 6);
-        return game;
-    }
-    static Minesweeper initMineFieldFromFile(String minefieldFile) {
-        return new Minesweeper(minefieldFile);
-    }
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        // Task 3: Implement a menu to select the mine field template
-        // Design the menu by yourself.
-               
-        Minesweeper game = initMineField();
-        // Minesweeper game = initMineFieldFromFile("minefield/minefield01.txt");
+        System.out.println("===== Minesweeper Game =====");
+        System.out.println("1. Load Mine Field from File");
+        System.out.println("2. Create New Random Mine Field");
+        System.out.print("Choose an option (1 or 2): ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine(); 
+
+        Minesweeper game;
+        
+        if (choice == 1) {
+            System.out.print("Enter mine field filename (e.g., 1): ");
+            String filename = scanner.nextLine();
+            game = new Minesweeper(filename);
+        } else {
+            System.out.print("Enter field width: ");
+            int width = scanner.nextInt();
+            System.out.print("Enter field height: ");
+            int height = scanner.nextInt();
+            System.out.print("Enter number of mines: ");
+            int numMines = scanner.nextInt();
+
+            game = new Minesweeper(width, height);
+            game.placeRandomMines(numMines);
+        }
+
+        System.out.println("\nMine Field:");
         game.displayField();
-    }    
+    }
 }
